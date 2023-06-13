@@ -1,0 +1,152 @@
+{% load static %}
+<style>
+    body, html {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+    
+    .navbar {
+      background-color: #333333;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    .navbar ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .background {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .form-container {
+      max-width: 500px;
+      width: 90%;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: slide-in 0.5s ease-out;
+    }
+    
+    @keyframes slide-in {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    h2 {
+      text-align: center;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333333;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f7f7f7;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      color: #333333;
+    }
+    
+    textarea {
+      height: 100px;
+    }
+    
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+</style>
+</style>
+</head> 
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a href="{% url 'form' %}" class="btn">Registro de Presença</a></li>
+      <li><a href="{% url 'lista_alunos' %}" class="btn">Lista dos Alunos</a></li>
+    </ul>
+  </div>
+  <div class="background">
+    <div class="form-container">
+      <h2>Registro de Presença</h2>
+      <form method="post" action="{% url 'form' %}">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="{{ form.nome_aluno.id_for_label }}">Nome do Aluno:</label>
+              {{ form.nome_aluno }}
+          </div>
+          <div class="form-group">
+              <label for="{{ form.nome_professor.id_for_label }}">Nome do Professor:</label>
+              {{ form.nome_professor }}
+          </div>
+          <div class="form-group">
+              <label for="{{ form.curso.id_for_label }}">Curso do Aluno:</label>
+              {{ form.curso }}
+          </div>
+          <button type="submit">Registrar Presença</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
